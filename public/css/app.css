@@ -1077,6 +1077,14 @@ select{
 	height: 24rem;
 }
 
+.h-auto{
+	height: auto;
+}
+
+.h-10{
+	height: 2.5rem;
+}
+
 .max-h-full{
 	max-height: 100%;
 }
@@ -1291,6 +1299,14 @@ select{
 .divide-gray-200 > :not([hidden]) ~ :not([hidden]){
 	--tw-divide-opacity: 1;
 	border-color: rgba(229, 231, 235, var(--tw-divide-opacity));
+}
+
+.justify-self-auto{
+	justify-self: auto;
+}
+
+.justify-self-start{
+	justify-self: start;
 }
 
 .overflow-hidden{
@@ -1518,6 +1534,11 @@ select{
 .bg-indigo-50{
 	--tw-bg-opacity: 1;
 	background-color: rgba(240, 245, 255, var(--tw-bg-opacity));
+}
+
+.bg-gray-800{
+	--tw-bg-opacity: 1;
+	background-color: rgba(37, 47, 63, var(--tw-bg-opacity));
 }
 
 .bg-opacity-75{

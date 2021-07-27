@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -40,7 +41,8 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -55,7 +57,7 @@ class PostsController extends Controller
         $image = $request->image->store('posts');
 
         // Create the post
-        Post::create([
+        $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
@@ -63,6 +65,11 @@ class PostsController extends Controller
             'published_at' => $request->published_at,
             'category_id' => $request->category_id
         ]);
+
+        // Set the post tags
+        if ($request->tags) {
+            $post->tags()->attach($request->tags);
+        }
 
         // Flash message with successfull
         session()->flash('success', 'Post created successfully.');
@@ -91,7 +98,7 @@ class PostsController extends Controller
     public function edit(Post $post)
     {
         //? Just return create blade with value of $post->id, so we dont need to make a separate edit.blade.php page.
-        return view('posts.create')->with('post', $post)->with('categories', Category::all());
+        return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -115,6 +122,10 @@ class PostsController extends Controller
 ;
             $data['image'] = $image;
 
+        }
+
+        if ($request->tags) {
+            $post->tags()->sync($request->tags);
         }
 
         // Update attributes

@@ -9,7 +9,7 @@
 @section('content')
     <section class="bg-white rounded-lg shadow-md overflow-hidden w-full">
 
-        <div class="{{ isset($post) ? 'bg-indigo-500' : 'bg-yellow-500' }} shadow p-4">
+        <div class="bg-gray-800 shadow p-4">
             <h1 class="text-xl text-white font-bold">
                 {{-- if there is a category already set title to Edit else to Create Category --}}
                 {{ isset($post) ? 'Edit Post' : 'Create Post' }}
@@ -95,6 +95,21 @@
                             @endforeach
                         </select>
                     </div>
+                    <div>
+                        <label for="tags" class="block font-bold text-gray-600">Tags</label>
+                        <select name="tags[]" id="tags"
+                            class="{{ isset($post) ? 'focus:ring-indigo-500 focus:border-indigo-500' : 'focus:ring-yellow-500 focus:border-yellow-500' }} block w-full rounded-md shadow-sm text-sm border-gray-300 tags-selector"
+                            multiple>
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}" @if (isset($post)) {{-- Check if tag is already a tag of this post then select it with 'selected' --}}
+                                                                                  @if ($post->hasTag($tag->id))
+                                    selected @endif
+                            @endif>
+                            {{ $tag->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
                     @if (isset($post->image))
                         <div>
                             <img src="{{ asset('/storage/' . $post->image) }}" alt="{{ $post->title }}"
@@ -132,14 +147,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
     <!-- Datepicker -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         flatpickr('#published_at', {
             dateFormat: "d-m-Y",
         })
+
+        $(document).ready(function() {
+            $('.tags-selector').select2({
+                placeholder: "Select tags...",
+            });
+        });
     </script>
 @endsection
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection

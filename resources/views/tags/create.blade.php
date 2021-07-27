@@ -9,7 +9,7 @@
 @section('content')
     <section class="bg-white rounded-lg shadow-md overflow-hidden w-full">
 
-        <div class="{{ isset($tag) ? 'bg-indigo-500' : 'bg-yellow-500' }} shadow p-4">
+        <div class="bg-gray-800 shadow p-4">
             <h1 class="text-xl text-white font-bold">
                 {{-- if there is a tag already set title to Edit else to Create Tag --}}
                 {{ isset($tag) ? 'Edit Tag' : 'Create Tag' }}

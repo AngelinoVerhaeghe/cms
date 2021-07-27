@@ -24,7 +24,7 @@
     @auth
         <div class="container mx-auto px-6 lg:px-0">
             <div class="grid lg:grid-cols-12 gap-6 mt-15">
-                <div class="lg:col-span-3 bg-white/70 bg-clip-content rounded-lg shadow-md">
+                <div class="lg:col-span-3 rounded-lg shadow-md">
                     @include('includes.aside')
                 </div>
                 <main class="lg:col-span-9">
@@ -42,6 +42,7 @@
 
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Blade page only scripts -->
     @yield('scripts')
