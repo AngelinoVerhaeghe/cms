@@ -98,6 +98,15 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+
+        //? Before deleting category, check if the category dont got a post attach to it!
+        if ($category->posts->count() > 0){
+
+            session()->flash('error', 'Category cannot been deleted!');
+
+            return redirect()->back();
+        }
+
         $category->delete();
 
         session()->flash('success', 'Category deleted successfully.');
