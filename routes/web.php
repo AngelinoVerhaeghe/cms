@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group( function () {
 
 //? Administrators routes only
 Route::middleware(['auth', 'admin'])->group( function () {
+    Route::get('users/profile', [\App\Http\Controllers\UsersController::class, 'edit'])->name('users.edit-profile');
+    Route::put('users/profile', [\App\Http\Controllers\UsersController::class, 'update'])->name('users.update-profile');
     Route::get('users', [\App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
     Route::post('users/{user}/make-admin', [\App\Http\Controllers\UsersController::class, 'makeAdmin'])->name('users.make-admin');
 });
