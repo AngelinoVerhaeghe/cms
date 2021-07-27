@@ -16,6 +16,8 @@
             </h1>
         </div>
 
+        @include('partials.errors')
+
         <div class="p-4">
             <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST"
                 enctype="multipart/form-data">

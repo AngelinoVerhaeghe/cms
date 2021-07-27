@@ -23,15 +23,14 @@
     </header>
     @auth
         <div class="container mx-auto px-6 lg:px-0">
-            <div class="flex flex-col md:flex-row gap-10 mt-15">
-                <div class="bg-white/70 bg-clip-content rounded-lg shadow-md w-80">
+            <div class="grid lg:grid-cols-12 gap-6 mt-15">
+                <div class="lg:col-span-3 bg-white/70 bg-clip-content rounded-lg shadow-md">
                     @include('includes.aside')
                 </div>
-                <main class="flex flex-grow">
+                <main class="lg:col-span-9">
                     @yield('content')
                 </main>
             </div>
-
         </div>
 
         <footer class="bg-gray-900 shadow-lg py-15 mt-15">

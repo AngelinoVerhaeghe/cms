@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('title')
-    CMS | Categories
+    CMS | Tags
 @endsection
 
 @section('content')
     <section class="rounded-lg shadow-md overflow-hidden">
 
         <div class="bg-gray-300 flex items-center justify-between px-6 lg:px-8 py-4">
-            <h1 class="text-xl text-gray-500 font-medium">Categories</h1>
+            <h1 class="text-xl text-gray-500 font-medium">Tags</h1>
             <div>
-                <a href="{{ route('categories.create') }}"
+                <a href="{{ route('tags.create') }}"
                     class="bg-green-500 text-sm font-bold uppercase text-gray-200 py-3 px-5 rounded-lg shadow-sm hover:bg-green-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-300">Create
                 </a>
             </div>
@@ -20,7 +20,7 @@
 
         <div class="flex flex-col mt-5 mb-10">
             <div class="overflow-x-auto">
-                @if (count($categories) > 0)
+                @if (count($tags) > 0)
                     <div class="py-2 align-middle inline-block min-w-full px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200">
@@ -41,27 +41,26 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach ($categories as $category)
+                                    @foreach ($tags as $tag)
                                         <tr class="hover:bg-gray-100">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-bold text-gray-900">
-                                                    {{ $category->name }}
+                                                    {{ $tag->name }}
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-bold text-gray-900">
-                                                    {{ $category->posts->count() }}
+                                                    0
                                                 </div>
                                             </td>
                                             <td x-data="{ open: false }"
                                                 class="px-6 py-4 whitespace-nowrap text-left text-sm font-bold space-x-3">
-                                                <a href="{{ route('categories.edit', $category->id) }}"
+                                                <a href="{{ route('tags.edit', $tag->id) }}"
                                                     class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                 <button type="button" x-on:click="open = !open"
                                                     class="text-red-600 hover:text-red-900" aria-controls="modal"
                                                     aria-expanded="false">Delete</button>
-                                                <form action="{{ route('categories.destroy', $category->id) }}"
-                                                    method="POST">
+                                                <form action="{{ route('categories.destroy', $tag->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <!-- Show delete Modal on click with animated transitions -->
@@ -102,15 +101,15 @@
                                                                             class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                                             <h3 class="text-lg leading-6 font-bold text-gray-900"
                                                                                 id="modal-title">
-                                                                                Delete Category?
+                                                                                Delete Tag?
                                                                             </h3>
                                                                             <div class="mt-2">
                                                                                 <p class="text-sm text-gray-500">
                                                                                     Are you sure you want to delete
                                                                                     <span
-                                                                                        class="text-gray-600 font-bold">{{ $category->name }}</span>
+                                                                                        class="text-gray-600 font-bold">{{ $tag->name }}</span>
                                                                                     as
-                                                                                    category? <br>
+                                                                                    tag? <br>
                                                                                     All of
                                                                                     your data will be permanently removed.
                                                                                     <br>
@@ -147,7 +146,7 @@
                     </div>
                 @else
                     <div class="sm:px-6 lg:px-8 mt-10">
-                        <p>No categories found!</p>
+                        <p>No tags found!</p>
                     </div>
                 @endif
             </div>

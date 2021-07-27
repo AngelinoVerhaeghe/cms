@@ -35,6 +35,15 @@
                     </span>
                 </a>
             </div>
+            <div>
+                <a href="{{ route('tags.index') }}">
+                    <span
+                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-teal-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
+                        <i class="ri-bookmark-3-line text-xl mr-3"></i>
+                        Tags
+                    </span>
+                </a>
+            </div>
         </ul>
 
         <ul class="border-t-2 border-gray-3 space-y-3 py-5">

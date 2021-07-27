@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <section class="rounded-lg shadow-md overflow-hidden w-full">
+    <section class="rounded-lg shadow-md overflow-hidden">
 
         <div class="bg-gray-300 flex items-center justify-between px-6 lg:px-8 py-4">
             <h1 class="text-xl text-gray-500 font-medium">Posts</h1>
@@ -19,16 +19,7 @@
             </div>
         </div>
 
-        @if (session()->has('success'))
-            <div x-data="{ open: true }" class="px-6 lg:px-8 mt-5">
-                <div x-show="open" x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="transform opacity-100" x-transition:leave-end="transform opacity-0"
-                    x-init="() => { setTimeout( () => { open = false }, 3000); }"
-                    class="flex justify-between bg-green-400 rounded-lg shadow py-3">
-                    <p class="text-sm text-green-100 font-bold px-6 lg:px-8">{{ session()->get('success') }}</p>
-                </div>
-            </div>
-        @endif
+        @include('partials.success')
 
         <div class="flex flex-col mt-5 mb-10">
             <div class="overflow-x-auto">
@@ -90,12 +81,12 @@
                                                 <!-- If post is softdeleted show Not Active -->
                                                 @if ($post->deleted_at != null)
                                                     <span
-                                                        class="text-xs font-bold bg-red-200 text-red-900 text-center rounded-full shadow px-2 py-1">
+                                                        class="text-xs inline-flex leading-5 font-bold bg-red-100 text-red-800 text-center rounded-full shadow px-2">
                                                         Not Active
                                                     </span>
                                                 @else
                                                     <span
-                                                        class="text-xs font-bold bg-green-200 text-green-900 text-center rounded-full shadow px-2 py-1">
+                                                        class="text-xs inline-flex leading-5 font-bold bg-green-100 text-green-500 text-center rounded-full shadow px-2">
                                                         Active
                                                     </span>
                                                 @endif

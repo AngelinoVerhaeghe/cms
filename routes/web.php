@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group( function () {
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
     Route::resource('categories', '\App\Http\Controllers\CategoriesController');
+    Route::resource('tags', '\App\Http\Controllers\TagsController');
     Route::resource('posts', '\App\Http\Controllers\PostsController');
 
     //? Routes with softDeletes
