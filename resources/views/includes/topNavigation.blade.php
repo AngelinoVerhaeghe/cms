@@ -15,7 +15,12 @@
                     <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @else
-                <span>{{ Auth::user()->name }}</span>
+                <div class="flex items-center space-x-3">
+                    <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="{{ Auth::user()->name }}"
+                        class="h-8 border border-gray-300 rounded-full shadow">
+                    <span>{{ Auth::user()->name }}</span>
+                </div>
+
             @endguest
         </ul>
 

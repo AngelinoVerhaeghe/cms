@@ -33,3 +33,10 @@ Route::middleware(['auth'])->group( function () {
     //? Restore Routes
     Route::put('restore-post/{post}', [\App\Http\Controllers\PostsController::class, 'restore'])->name('restore-post');
 });
+
+//? Administrators routes only
+Route::middleware(['auth', 'admin'])->group( function () {
+    Route::get('users', [\App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
+    Route::post('users/{user}/make-admin', [\App\Http\Controllers\UsersController::class, 'makeAdmin'])->name('users.make-admin');
+});
+

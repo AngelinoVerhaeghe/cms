@@ -40,4 +40,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     *
+     *
+     * See if user is Administrator
+     */
+    public function isAdmin()
+    {
+        return $this->role === 'Administrator';
+    }
 }
