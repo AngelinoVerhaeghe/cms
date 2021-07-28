@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Requests\Categories\CreateCategoryRequest;
 use App\Http\Requests\Categories\UpdateCategoryRequest;
-use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -41,7 +42,8 @@ class CategoriesController extends Controller
     {
 
         Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-')
         ]);
 
         session()->flash('success', 'Category created successfully.');
@@ -82,7 +84,8 @@ class CategoriesController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-')
         ]);
 
         session()->flash('success', 'Category updated successfully.');

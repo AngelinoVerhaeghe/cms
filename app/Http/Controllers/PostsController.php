@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
@@ -59,6 +60,7 @@ class PostsController extends Controller
         // Create the post
         $post = Post::create([
             'title' => $request->title,
+            'slug' => Str::slug($request->title, '-'),
             'description' => $request->description,
             'content' => $request->content,
             'image' => $image,
@@ -129,6 +131,7 @@ class PostsController extends Controller
         }
 
         // Update attributes
+        $data['slug'] = Str::slug($request->title, '-');
         $post->update($data);
 
         // Flash message

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Requests\Tags\CreateTagRequest;
 use App\Http\Requests\Tags\UpdateTagRequest;
-use App\Models\Tag;
-use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
@@ -39,7 +40,8 @@ class TagsController extends Controller
     public function store(CreateTagRequest $request)
     {
         Tag::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-'),
         ]);
 
         session()->flash('success', 'Tag created successfully.');
@@ -80,7 +82,8 @@ class TagsController extends Controller
     public function update(UpdateTagRequest $request, Tag $tag)
     {
         $tag->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-'),
         ]);
 
         session()->flash('success', 'Tag updated successfully.');

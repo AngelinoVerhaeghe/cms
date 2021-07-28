@@ -13,7 +13,7 @@ class Post extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'content', 'image', 'published_at', 'category_id'];
+    protected $fillable = ['title', 'slug', 'description', 'content', 'image', 'published_at', 'category_id'];
 
     /**
      * Delete post image from storage

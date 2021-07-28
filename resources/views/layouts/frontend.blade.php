@@ -22,11 +22,11 @@
         @include('includes.topNavigation')
     </header>
 
-    <div class="container mx-auto px-6 lg:px-0">
-        <main>
-            @yield('content')
-        </main>
-    </div>
+
+    <main>
+        @yield('content')
+    </main>
+
 
     <footer class="bg-gray-900 shadow-lg py-15 mt-15">
         @include('includes.footer')

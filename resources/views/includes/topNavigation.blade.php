@@ -6,19 +6,26 @@
     </div>
     <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
         <ul class="flex items-center space-x-3">
-            <div>
-                <a href=""></a>
-            </div>
             @guest
-                <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                    href="{{ route('index') }}">Home</a>
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                    href="{{ route('blogs-overview') }}">Blogs</a>
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                    href="{{ route('login') }}">{{ __('Login') }}</a>
                 @if (Route::has('register'))
-                    <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                        href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @else
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                    href="{{ route('index') }}">Home</a>
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                    href="{{ route('blogs-overview') }}">Blogs</a>
                 <!-- Profile dropdown -->
                 <div x-data="{ open: false }" class="relative">
                     <div class="flex items-center space-x-3">
-                        <span>
+                        <span class="text-base font-bold">
                             {{ Auth()->user()->name }}
                         </span>
                         <button type="button" x-on:click="open = ! open"
@@ -40,7 +47,7 @@
                             role="menuitem" tabindex="-1" id="user-menu-item-1">Your Profile</a>
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                    document.getElementById('logout-form').submit();"
+                                                                                                                            document.getElementById('logout-form').submit();"
                             class="block px-4 py-2 text-sm text-gray-700 rounded-xl transition duration-300 ease-in-out hover:bg-gray-300"
                             role="menuitem" tabindex="-1" id="user-menu-item-2">
                             {{ __('Sign out') }}
