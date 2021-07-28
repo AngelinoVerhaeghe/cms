@@ -31,3 +31,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 This is a project with Laravel, a blog with CMS. Authentication for users, creating posts, categories, tags etc...
 Styled with Tailwindcss
 
+## Images
+
+In the root folder, frontpage.png blogpage.png.
+
+CMS image, dashboard.png
