@@ -19,7 +19,7 @@ class VerifyIsAdmin
 
         if (!auth()->user()->isAdmin()) {
 
-            return redirect(route('index'));
+            return redirect(route('admin.index'));
         }
 
         return $next($request);

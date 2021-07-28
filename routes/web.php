@@ -18,14 +18,17 @@ use Illuminate\Support\Facades\Route;
     return view('index');
 }); */
 
+//? Public Routes
+Route::get('/', [\App\Http\Controllers\PagesController::class, 'index'])->name('index');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group( function () {
-    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
+    Route::get('/admin', [\App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
 
-    Route::resource('categories', '\App\Http\Controllers\CategoriesController');
-    Route::resource('tags', '\App\Http\Controllers\TagsController');
-    Route::resource('posts', '\App\Http\Controllers\PostsController');
+    Route::resource('admin/categories', '\App\Http\Controllers\CategoriesController');
+    Route::resource('admin/tags', '\App\Http\Controllers\TagsController');
+    Route::resource('admin/posts', '\App\Http\Controllers\PostsController');
 
     //? Routes with softDeletes
     Route::get('trashed-posts', [\App\Http\Controllers\PostsController::class, 'trashed'])->name('trashed-posts.index');

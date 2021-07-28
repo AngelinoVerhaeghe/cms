@@ -102,7 +102,7 @@
                             multiple>
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}" @if (isset($post)) {{-- Check if tag is already a tag of this post then select it with 'selected' --}}
-                                                                                  @if ($post->hasTag($tag->id))
+                                                                                            @if ($post->hasTag($tag->id))
                                     selected @endif
                             @endif>
                             {{ $tag->name }}

@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
      /**
@@ -29,7 +29,7 @@ class UsersController extends Controller
     {
         //? Only auth user can edit there profile
         $user = auth()->user();
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -50,7 +50,7 @@ class UsersController extends Controller
 
         session()->flash('success', 'Your profile updated successfully.');
 
-        return redirect(route('users.index'));
+        return redirect(route('admin.users.index'));
     }
 
 
@@ -62,6 +62,6 @@ class UsersController extends Controller
 
         session()->flash('success', 'User made Administrator successfully.');
 
-        return redirect(route('users.index'));
+        return redirect(route('admin.users.index'));
     }
 }

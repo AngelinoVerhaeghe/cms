@@ -60,7 +60,7 @@
                                                 <button type="button" x-on:click="open = !open"
                                                     class="text-red-600 hover:text-red-900" aria-controls="modal"
                                                     aria-expanded="false">Delete</button>
-                                                <form action="{{ route('categories.destroy', $tag->id) }}" method="POST">
+                                                <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <!-- Show delete Modal on click with animated transitions -->
@@ -123,7 +123,7 @@
                                                                 </div>
                                                                 <div
                                                                     class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-end space-x-3">
-                                                                    <a href="{{ route('categories.index') }}"
+                                                                    <a href="{{ route('tags.index') }}"
                                                                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-bold rounded-lg text-white bg-gray-600 transition duration-300 ease-in-out hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                                                                         Cancel
                                                                     </a>

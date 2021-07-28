@@ -17,7 +17,7 @@ class TagsController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('tags.index', compact('tags'));
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -27,7 +27,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view('tags.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class TagsController extends Controller
     public function edit(Tag $tag)
     {
         //? Just return create blade with value of $tag->id, so we dont need to make a separate edit.blade.php page.
-        return view('tags.create')->with('tag', $tag);
+        return view('admin.tags.create')->with('tag', $tag);
     }
 
     /**

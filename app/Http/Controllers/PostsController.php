@@ -30,7 +30,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -42,7 +42,7 @@ class PostsController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('posts.create', compact('categories', 'tags'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -98,7 +98,7 @@ class PostsController extends Controller
     public function edit(Post $post)
     {
         //? Just return create blade with value of $post->id, so we dont need to make a separate edit.blade.php page.
-        return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
+        return view('admin.posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -179,7 +179,7 @@ class PostsController extends Controller
     {
         $posts = Post::onlyTrashed()->get();
 
-        return view('posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**

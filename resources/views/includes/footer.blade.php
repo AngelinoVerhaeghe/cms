@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="flex items-center justify-between border-t-2 border-gray-200 py-5">
-        <p>Angelino Verhaeghe - CMS</p>
+        <p>Angelino Verhaeghe - BLOG</p>
         <p>&copy; All Rights Reserved - 2021</p>
     </div>
 </div>

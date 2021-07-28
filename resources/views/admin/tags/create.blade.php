@@ -36,7 +36,7 @@
                     @enderror
                 </div>
                 <div class="px-4 py-3 border-t-2 border-gray-200 text-right space-x-3 mt-4">
-                    <a href="{{ route('categories.index') }}"
+                    <a href="{{ route('tags.index') }}"
                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-bold rounded-lg text-white bg-gray-600 transition duration-300 ease-in-out hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Cancel</a>
                     @if (isset($tag))
                         <button type="submit"

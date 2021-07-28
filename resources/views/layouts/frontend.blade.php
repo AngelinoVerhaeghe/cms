@@ -18,27 +18,19 @@
 
 <body class="bg-gray-100 h-screen antialiased font-sans">
 
-    <header class="bg-black shadow-lg py-6">
-        @include('includes.backend.topNavigation')
+    <header class="bg-gray-900 shadow-lg py-6">
+        @include('includes.topNavigation')
     </header>
-    @auth
-        <div class="container mx-auto px-6 lg:px-0">
-            <div class="grid lg:grid-cols-12 gap-6 mt-15">
-                <div class="lg:col-span-3 rounded-lg shadow-md">
-                    @include('includes.backend.aside')
-                </div>
-                <main class="lg:col-span-9">
-                    @yield('content')
-                </main>
-            </div>
-        </div>
 
-        <footer class="bg-gray-900 shadow-lg py-15 mt-15">
-            @include('includes.backend.footer')
-        </footer>
-    @else
-        @yield('content')
-    @endauth
+    <div class="container mx-auto px-6 lg:px-0">
+        <main>
+            @yield('content')
+        </main>
+    </div>
+
+    <footer class="bg-gray-900 shadow-lg py-15 mt-15">
+        @include('includes.footer')
+    </footer>
 
 
     <!-- Scripts -->

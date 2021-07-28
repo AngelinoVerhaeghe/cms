@@ -17,7 +17,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoriesController extends Controller
     public function create()
     {
 
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoriesController extends Controller
     public function edit(Category $category)
     {
         //? Just return create blade with value of $category->id, so we dont need to make a separate edit.blade.php page.
-        return view('categories.create')->with('category', $category);
+        return view('admin.categories.create')->with('category', $category);
     }
 
     /**
