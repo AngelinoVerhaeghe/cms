@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,7 @@ class Post extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'slug', 'description', 'content', 'image', 'published_at', 'category_id'];
+    protected $fillable = ['title', 'slug', 'description', 'content', 'image', 'published_at', 'category_id', 'user_id'];
 
     /**
      * Delete post image from storage
@@ -33,6 +34,11 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

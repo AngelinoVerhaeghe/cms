@@ -65,7 +65,8 @@ class PostsController extends Controller
             'content' => $request->content,
             'image' => $image,
             'published_at' => $request->published_at,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'user_id' => auth()->user()->id
         ]);
 
         // Set the post tags
