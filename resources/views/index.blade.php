@@ -27,7 +27,9 @@
     </section>
     <div>
 
-
+        <div class="container mx-auto max-w-4xl my-5">
+            @include('partials.success')
+        </div>
 
         <section class="container mx-auto px-6 lg:px-0 my-15">
             <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6 lg:gap-20">

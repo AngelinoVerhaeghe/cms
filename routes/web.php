@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\PagesController::class, 'index'])->name('index');
 Route::get('/blogs', [\App\Http\Controllers\PagesController::class, 'blogs'])->name('blogs-overview');
 Route::get('/posts/{post}', [\App\Http\Controllers\Blog\PostsController::class, 'show'])->name('blog.show');
+Route::post('/subscribe', [\App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter');
 
 Auth::routes();
 

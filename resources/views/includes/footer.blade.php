@@ -54,11 +54,17 @@
             </ul>
         </div>
         <div class="mb-10">
-            <h3 class="text-xl font-bold mb-5">Sign in for our newsletter.</h3>
+            <h3 class="text-xl font-bold mb-5">Subscribe to our Newsletter.</h3>
             <div class="relative border-2 border-yellow-500 p-2 rounded-full">
-                <input type="email" name="email" id="email" class="rounded-full w-full">
-                <button type="submit"
-                    class="absolute right-2 bottom-2 bg-gray-700 py-[9px] px-4 rounded-full">Signup</button>
+                <form action="{{ route('newsletter') }}" method="POST">
+                    @csrf
+                    <input type="email" name="email" id="email"
+                        class="text-gray-700 focus:ring-yellow-500 focus:border-yellow-500 flex-1 block w-full rounded-full text-sm border-gray-300"
+                        placeholder="Enter Email...">
+                    <button type="submit"
+                        class="absolute right-2 bottom-2 bg-gray-700 py-[7px] px-4 rounded-full">Submit</button>
+                </form>
+
             </div>
         </div>
     </div>
