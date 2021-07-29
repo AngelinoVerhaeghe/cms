@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 //? Public Routes
 Route::get('/', [\App\Http\Controllers\PagesController::class, 'index'])->name('index');
 Route::get('/blogs', [\App\Http\Controllers\PagesController::class, 'blogs'])->name('blogs-overview');
+Route::get('/posts/{post}', [\App\Http\Controllers\Blog\PostsController::class, 'show'])->name('blog.show');
 
 Auth::routes();
 

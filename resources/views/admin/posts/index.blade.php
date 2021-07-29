@@ -58,9 +58,9 @@
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach ($posts as $post)
                                         <tr class="hover:bg-gray-100">
-                                            <td class="px-6 py-4">
+                                            <td class="px-6 py-4 whitespace-nowrap">
                                                 <img src="{{ asset('/storage/' . $post->image) }}"
-                                                    alt="{{ $post->title }}" class="h-32">
+                                                    alt="{{ $post->title }}" class="h-32 w-full">
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-bold text-gray-900">

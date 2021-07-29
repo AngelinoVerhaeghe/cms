@@ -11,7 +11,7 @@
     <section class="background-image flex items-center">
         <div class="grid grid-cols-1 text-center mx-auto">
             <div class="bg-white/20 backdrop-blur-md rounded-lg shadow-md p-4">
-                <h1 class="text-gray-900 text-2xl md:text-4xl lg:text-6xl uppercase font-bold">Welkom op mijn blog
+                <h1 class="text-gray-900 text-2xl md:text-4xl lg:text-6xl uppercase font-bold">Welcome to my blog
                 </h1>
                 <h3 class="text-gray-800 italic lowercase text-1xl md:text-3xl lg:text-5xl my-3 md:my-5">
                     project in laravel!
@@ -20,7 +20,7 @@
 
             <div class="mt-10 mb-5">
                 <a href="/blogs"
-                    class="text-lg font-bold uppercase bg-gray-50 text-gray-700 rounded-lg shadow-md py-2 px-4 md:px-8 hover:bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Read
+                    class="text-md font-bold uppercase bg-gray-50 text-gray-700 rounded-lg shadow-md py-2 px-4 md:px-6 hover:bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Read
                     More...</a>
             </div>
         </div>
@@ -32,8 +32,8 @@
         <section class="container mx-auto px-6 lg:px-0 my-15">
             <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6 lg:gap-20">
                 <div class="flex items-center justify-center">
-                    <img src="{{ asset('storage/images/about_image.jpg') }}" class="object-cover md:h-full shadow-md"
-                        alt="">
+                    <img src="{{ asset('storage/images/about_image.jpg') }}"
+                        class="object-cover md:h-full shadow-md rounded-lg" alt="">
                 </div>
                 <div class="flex flex-col mt-5 md:mt-0 2xl:justify-center">
                     <h2 class="text-2xl lg:text-3xl xl:text-4xl text-gray-600 font-bold ">
@@ -65,31 +65,30 @@
             </div>
         </section>
 
-        <section class="container mx-auto px-6 lg:px-0 my-15">
+        <section class="container mx-auto px-2 lg:px-0 my-15">
 
             <h2 class="text-3xl text-gray-700 md:text-center font-bold uppercase mb-5 md:mb-10">Latest blog posts</h2>
             @if (count($recentPosts) > 0)
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 md:gap-6 xl:gap-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-10 my-15">
                     @foreach ($recentPosts as $recentPost)
-                        <div class="bg-gray-800 text-gray-100 rounded-lg shadow-lg overflow-hidden">
+                        <div class="relative bg-gray-800 text-gray-100 rounded-lg shadow-lg overflow-hidden">
                             <img src="{{ asset('/storage/' . $recentPost->image) }}" alt="{{ $recentPost->title }}"
-                                class="object-cover">
-                            <div class="p-4">
+                                class="object-cover md:h-60 md:w-full">
+                            <div class="p-6">
+                                <span
+                                    class="absolute top-4 left-4 bg-yellow-100 text-yellow-900 font-bold rounded-full shadow-md py-0.5 px-2">{{ $recentPost->category->name }}</span>
                                 <h2 class="text-xl font-bold">{{ $recentPost->title }}</h2>
                                 <div class="line-clamp-4 my-5">
                                     <p>{!! $recentPost->content !!}</p>
                                 </div>
-                                <div class="flex items-center justify-between text-xs font-bold">
-                                    <span
-                                        class="bg-yellow-200 text-yellow-900 rounded-full shadow-md py-1 px-3">{{ $recentPost->category->name }}</span>
+                                <div class="flex items-center justify-end text-xs font-bold">
                                     <span class="text-gray-300 italic">{{ $recentPost->published_at }}</span>
                                 </div>
                                 <div class="flex mt-5">
-                                    <a href="/blogs/{{ $recentPost->slug }}"
+                                    <a href="{{ route('blog.show', $recentPost->slug) }}"
                                         class="bg-gray-500 text-gray-100 text-md font-bold rounded-lg shadow-md py-2 px-4">Read
                                         More</a>
                                 </div>
-
                             </div>
                         </div>
                     @endforeach

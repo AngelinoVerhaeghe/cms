@@ -20,7 +20,7 @@ class PagesController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $blogs = Post::all();
-        return view('blogs', compact('blogs', 'categories', 'tags'));
+        $posts = Post::all();
+        return view('blogs', compact('posts', 'categories', 'tags'));
     }
 }

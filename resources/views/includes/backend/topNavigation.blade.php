@@ -30,16 +30,17 @@
                         </button>
                     </div>
                     <div x-show="open" @click.away="open = false"
-                        class="p-2 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        class="p-2 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <a href="{{ route('index') }}"
                             class="block px-4 py-2 text-sm text-gray-700 rounded-xl transition duration-300 ease-in-out hover:bg-gray-300"
                             role="menuitem" tabindex="-1" id="user-menu-item-0">Blog</a>
                         <a href="{{ route('users.edit-profile') }}"
                             class="block px-4 py-2 text-sm text-gray-700 rounded-xl transition duration-300 ease-in-out hover:bg-gray-300"
-                            role="menuitem" tabindex="-1" id="user-menu-item-1">Your Profile</a>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                        document.getElementById('logout-form').submit();"
+                            role="menuitem" tabindex="-1" id="user-menu-item-1">My Profile</a>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                                            document.getElementById('logout-form').submit();"
                             class="block px-4 py-2 text-sm text-gray-700 rounded-xl transition duration-300 ease-in-out hover:bg-gray-300"
                             role="menuitem" tabindex="-1" id="user-menu-item-2">
                             {{ __('Sign out') }}

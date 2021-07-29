@@ -88,7 +88,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
