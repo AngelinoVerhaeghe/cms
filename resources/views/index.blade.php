@@ -78,7 +78,7 @@
                                 class="object-cover md:h-60 md:w-full">
                             <div class="p-6">
                                 <span
-                                    class="absolute top-4 left-4 bg-yellow-100 text-yellow-900 font-bold rounded-full shadow-md py-0.5 px-2">{{ $recentPost->category->name }}</span>
+                                    class="absolute top-4 left-4 bg-teal-100 text-teal-900 font-bold rounded-full shadow-md py-0.5 px-2">{{ $recentPost->category->name }}</span>
                                 <h2 class="text-xl font-bold">{{ $recentPost->title }}</h2>
                                 <div class="line-clamp-4 my-5">
                                     <p>{!! $recentPost->content !!}</p>

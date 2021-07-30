@@ -18,9 +18,20 @@ class PagesController extends Controller
 
     public function blogs()
     {
+
+        $searchInput = request()->query('search');
+
+        //? Search funtionality
+        if($searchInput) {
+            $posts = Post::where('title', 'LIKE', "%{$searchInput}%")->paginate(8);
+
+        } else {
+            $posts = Post::paginate(8);
+        }
+
         $categories = Category::all();
         $tags = Tag::all();
-        $posts = Post::all();
+
         return view('blogs', compact('posts', 'categories', 'tags'));
     }
 }

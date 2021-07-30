@@ -2,7 +2,7 @@
 
 @section('title')
 
-    Blog | Overview
+    Tag | {{ $tag->name }}
 
 @endsection
 
@@ -11,11 +11,9 @@
     <section class="background-image-2 flex items-center">
         <div class="grid grid-cols-1 text-center mx-auto">
             <div class="bg-white/20 backdrop-blur-md rounded-lg shadow-md p-4">
-                <h1 class="text-gray-900 text-2xl md:text-4xl lg:text-6xl uppercase font-bold">Latest Blog Posts
+                <h1 class="text-gray-900 text-2xl md:text-4xl lg:text-6xl uppercase font-bold">{{ $tag->name }}
                 </h1>
-                <h3 class="text-gray-800 italic lowercase text-1xl md:text-3xl lg:text-5xl my-3 md:my-5">
-                    bring all the good things...
-                </h3>
+                <h3 class="text-xl italic">tag</h3>
             </div>
         </div>
     </section>
@@ -23,7 +21,7 @@
     <section class="container mx-auto px-2 lg:px-0 my-15">
 
         <div>
-            <form action="" method="GET">
+            <form action="{{ route('blogs-overview') }}" method="GET">
                 @csrf
                 <div class="space-y-3 pb-10">
                     <label for="search" class="font-bold text-gray-800">Search</label>

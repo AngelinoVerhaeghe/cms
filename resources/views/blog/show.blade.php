@@ -27,7 +27,7 @@
         <div class="text-gray-700 rounded-lg shadow-lg">
             <div class="p-6">
                 <span
-                    class="bg-yellow-100 text-yellow-900 font-bold rounded-full shadow-md py-0.5 px-2">{{ $post->category->name }}</span>
+                    class="bg-teal-100 text-teal-900 font-bold rounded-full shadow-md py-0.5 px-2">{{ $post->category->name }}</span>
                 <div class="my-5">
                     <p>{!! $post->content !!}</p>
                 </div>

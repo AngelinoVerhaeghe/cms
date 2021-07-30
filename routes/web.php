@@ -23,6 +23,8 @@ Route::get('/', [\App\Http\Controllers\PagesController::class, 'index'])->name('
 Route::get('/blogs', [\App\Http\Controllers\PagesController::class, 'blogs'])->name('blogs-overview');
 Route::get('/posts/{post}', [\App\Http\Controllers\Blog\PostsController::class, 'show'])->name('blog.show');
 Route::post('/subscribe', [\App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter');
+Route::get('blogs/categories/{category:slug}', [\App\Http\Controllers\Blog\PostsController::class, 'showBlogsOnCategory'])->name('blog.category');
+Route::get('blogs/tags/{tag:slug}', [\App\Http\Controllers\Blog\PostsController::class, 'showBlogsOnTag'])->name('blog.tag');
 
 Auth::routes();
 
