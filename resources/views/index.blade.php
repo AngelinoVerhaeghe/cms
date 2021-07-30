@@ -83,12 +83,13 @@
                                 <div class="line-clamp-4 my-5">
                                     <p>{!! $recentPost->content !!}</p>
                                 </div>
-                                <div class="flex items-center justify-end text-xs font-bold">
+                                <div class="flex items-center justify-between text-xs font-bold">
+                                    <span class="font-bold text-sm text-gray-300">by {{ $recentPost->user->name }}</span>
                                     <span class="text-gray-300 italic">{{ $recentPost->published_at }}</span>
                                 </div>
                                 <div class="flex mt-5">
                                     <a href="{{ route('blog.show', $recentPost->slug) }}"
-                                        class="bg-gray-500 text-gray-100 text-md font-bold rounded-lg shadow-md py-2 px-4">Read
+                                        class="bg-gray-500 text-gray-100 text-md font-bold rounded-lg shadow-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">Read
                                         More</a>
                                 </div>
                             </div>

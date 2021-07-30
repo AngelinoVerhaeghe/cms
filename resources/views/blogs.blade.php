@@ -28,7 +28,7 @@
                 <div class="-m-3 flex items-center">
                     @forelse ($categories as $category )
                         <a href=""
-                            class="bg-teal-900 font-bold text-white rounded-lg shadow-md py-2 px-4 hover:bg-teal-700 transition duration-300 ease-in-out m-3 mb-3">{{ $category->name }}
+                            class="bg-teal-900 font-bold text-white rounded-lg shadow-md py-2 px-4 hover:bg-teal-700 transition duration-300 ease-in-out m-3 mb-3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">{{ $category->name }}
 
                         </a>
                         @if (!$loop->last)
@@ -46,7 +46,7 @@
                 <div class="-m-3 flex flex-wrap items-center">
                     @forelse ($tags as $tag )
                         <a href=""
-                            class="bg-fuchsia-900 font-bold text-white rounded-full shadow-md py-0.5 px-2 hover:bg-fuchsia-700 transition duration-300 ease-in-out m-3 mb-3">#{{ $tag->name }}
+                            class="bg-fuchsia-900 font-bold text-white rounded-full shadow-md py-0.5 px-2 hover:bg-fuchsia-700 transition duration-300 ease-in-out m-3 mb-3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-400">#{{ $tag->name }}
                         </a>
                         @if (!$loop->last)
                             <div class="before:border-r-2 before:border-fuchsia-900"></div>
@@ -76,12 +76,13 @@
                             <div class="line-clamp-4 my-5">
                                 <p>{!! $post->content !!}</p>
                             </div>
-                            <div class="flex items-center justify-end text-xs font-bold">
-                                <span class="text-orange-700 italic">{{ $post->published_at }}</span>
+                            <div class="flex items-center justify-between text-xs font-bold">
+                                <span class="font-bold text-orange-700">by {{ $post->user->name }}</span>
+                                <span class="text-orange-700 italic">{{ $post->created_at->diffForHumans() }}</span>
                             </div>
                             <div class="flex mt-5">
                                 <a href="{{ route('blog.show', $post->slug) }}"
-                                    class="bg-orange-900 text-white text-md font-bold rounded-lg shadow-md py-2 px-4 hover:bg-orange-700 transition duration-300 ease-in-out">Read
+                                    class="bg-orange-900 text-white text-md font-bold rounded-lg shadow-md py-2 px-4 hover:bg-orange-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400">Read
                                     More</a>
                             </div>
                         </div>

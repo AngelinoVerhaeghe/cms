@@ -1,26 +1,27 @@
 <div class="container mx-auto flex justify-between items-center px-2 lg:px-0">
     <div>
-        <a href="{{ url('/') }}" class="text-lg font-bold uppercase text-gray-100 no-underline">
+        <a href="{{ url('/') }}"
+            class="text-lg font-bold uppercase text-gray-100 no-underline px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400">
             Blog
         </a>
     </div>
-    <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-        <ul class="flex items-center space-x-3">
+    <nav class="space-x-4 text-white font-bold">
+        <ul class="flex items-center space-x-3 xl:space-x-8">
             @guest
-                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                <a class="border-2 border-transparent rounded-full hover:border-rose-500 block px-4 py-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
                     href="{{ route('index') }}">Home</a>
-                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                <a class="border-2 border-transparent rounded-full hover:border-rose-500 block px-4 py-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
                     href="{{ route('blogs-overview') }}">Blogs</a>
-                <a class="bg-rose-500 text-white font-bold text-base rounded-full shadow-md py-2 px-5 hover:bg-rose-700 transition duration-300 ease-in-out"
+                <a class="bg-rose-500 text-white rounded-full shadow-md py-2 px-5 hover:bg-rose-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
                     href="{{ route('login') }}">{{ __('Login') }}</a>
                 @if (Route::has('register'))
-                    <a class="border-2 border-rose-500 font-bold text-white shadow-mdtext-base rounded-full shadow-md py-2 px-5 hover:bg-white hover:text-rose-500 hover:border-white transition duration-300 ease-in-out"
+                    <a class="border-2 border-rose-500 shadow-mdtext-base rounded-full shadow-md py-2 px-5 hover:bg-white hover:text-rose-500 hover:border-white transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
                         href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @else
-                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                <a class="border-2 border-transparent rounded-full hover:border-rose-500 block px-4 py-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
                     href="{{ route('index') }}">Home</a>
-                <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
+                <a class="border-2 border-transparent rounded-full hover:border-rose-500 block px-4 py-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
                     href="{{ route('blogs-overview') }}">Blogs</a>
                 <!-- Profile dropdown -->
                 <div x-data="{ open: false }" class="relative">
@@ -47,7 +48,7 @@
                             role="menuitem" tabindex="-1" id="user-menu-item-1">My Profile</a>
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                                                                                                                document.getElementById('logout-form').submit();"
+                                                                                                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit();"
                             class="block px-4 py-2 text-sm text-gray-700 rounded-xl transition duration-300 ease-in-out hover:bg-gray-300"
                             role="menuitem" tabindex="-1" id="user-menu-item-2">
                             {{ __('Sign out') }}
