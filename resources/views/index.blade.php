@@ -85,7 +85,8 @@
                                 </div>
                                 <div class="flex items-center justify-between text-xs font-bold">
                                     <span class="font-bold text-sm text-gray-300">by {{ $recentPost->user->name }}</span>
-                                    <span class="text-gray-300 italic">{{ $recentPost->published_at }}</span>
+                                    <span
+                                        class="text-gray-300 italic">{{ $recentPost->created_at->diffForHumans() }}</span>
                                 </div>
                                 <div class="flex mt-5">
                                     <a href="{{ route('blog.show', $recentPost->slug) }}"

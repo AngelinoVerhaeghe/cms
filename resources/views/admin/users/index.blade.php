@@ -106,4 +106,11 @@
 
     </section>
 
+    <section class="container mx-auto px-2 lg:px-0 my-5">
+
+        {{ $users->links('vendor.pagination.tailwind') }}
+
+    </section>
+
+
 @endsection

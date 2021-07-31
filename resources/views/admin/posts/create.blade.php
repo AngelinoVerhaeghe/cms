@@ -102,7 +102,8 @@
                             multiple>
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}" @if (isset($post)) {{-- Check if tag is already a tag of this post then select it with 'selected' --}}
-                                                                                            @if ($post->hasTag($tag->id))
+
+                                                                                      @if ($post->hasTag($tag->id))
                                     selected @endif
                             @endif>
                             {{ $tag->name }}
@@ -150,8 +151,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         flatpickr('#published_at', {
-            dateFormat: "d-m-Y",
-        })
+            dateFormat: "d-m-Y H:i",
+            enableTime: true,
+            enableSeconds: true,
+        });
 
         $(document).ready(function() {
             $('.tags-selector').select2({

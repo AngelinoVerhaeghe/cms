@@ -91,36 +91,41 @@
                                                     </span>
                                                 @endif
                                             </td>
-                                            <td class="text-left text-sm px-6 py-4 whitespace-nowrap">
-                                                <div class="flex space-x-4">
-                                                    <!-- If post has been trashed hide the edit button -->
-                                                    @if ($post->trashed())
-                                                        <form action="{{ route('restore-post', $post->id) }}"
+                                            @if (auth()->user()->id == $post->user->id)
+                                                <td class="text-left text-sm px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex space-x-4">
+                                                        <!-- If post has been trashed hide the edit button -->
+                                                        @if ($post->trashed())
+                                                            <form action="{{ route('restore-post', $post->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit"
+                                                                    href="{{ route('posts.edit', $post->id) }}"
+                                                                    class="text-yellow-500 hover:text-yellow-900">
+                                                                    Restore
+                                                                </button>
+                                                            </form>
+
+                                                        @else
+                                                            <a href="{{ route('posts.edit', $post->id) }}"
+                                                                class="text-indigo-500 hover:text-indigo-900">Edit</a>
+                                                        @endif
+                                                        <form action="{{ route('posts.destroy', $post->id) }}"
                                                             method="POST">
                                                             @csrf
-                                                            @method('PUT')
+                                                            @method('DELETE')
+                                                            <!-- Swith button text to delete or trash -->
                                                             <button type="submit"
-                                                                href="{{ route('posts.edit', $post->id) }}"
-                                                                class="text-yellow-500 hover:text-yellow-900">
-                                                                Restore
+                                                                class="text-sm text-red-500 hover:text-red-900">
+                                                                {{ $post->trashed() ? 'Delete' : 'Trash' }}
                                                             </button>
                                                         </form>
-
-                                                    @else
-                                                        <a href="{{ route('posts.edit', $post->id) }}"
-                                                            class="text-indigo-500 hover:text-indigo-900">Edit</a>
-                                                    @endif
-                                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <!-- Swith button text to delete or trash -->
-                                                        <button type="submit"
-                                                            class="text-sm text-red-500 hover:text-red-900">
-                                                            {{ $post->trashed() ? 'Delete' : 'Trash' }}
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                                    </div>
+                                                </td>
+                                            @else
+                                                <td class="px-6 py-4 whitespace-nowrap"></td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -136,5 +141,12 @@
         </div>
 
     </section>
+
+    <section class="container mx-auto px-2 lg:px-0 my-5">
+
+        {{ $posts->links('vendor.pagination.tailwind') }}
+
+    </section>
+
 
 @endsection

@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        <h2 class="text-3xl text-gray-700 md:text-center font-bold uppercase mb-5 md:mb-10 my-15">Latest Blog Posts</h2>
+        <h2 class="text-3xl text-gray-700 md:text-center font-bold uppercase mb-5 md:mb-10 my-15">Tag</h2>
 
         @if (isset($posts))
             <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-10 my-15">

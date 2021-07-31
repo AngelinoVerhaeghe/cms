@@ -16,7 +16,7 @@
     @yield('css')
 </head>
 
-<body class="bg-gray-100 h-screen antialiased font-sans">
+<body class="bg-gray-300 h-screen antialiased font-sans">
 
     <header class="bg-gray-900 shadow-lg py-6">
         @include('includes.topNavigation')
@@ -38,7 +38,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Blade page only scripts -->
     @yield('scripts')
-
 </body>
 
 </html>

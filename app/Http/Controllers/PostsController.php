@@ -30,7 +30,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->paginate(3);
         return view('admin.posts.index', compact('posts'));
     }
 
