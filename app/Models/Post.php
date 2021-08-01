@@ -67,11 +67,16 @@ class Post extends Model
         //? Get the value of search
         $search = request()->query('search');
 
+
+
         if (!$search) {
             return $query->published();
         }
 
-        return $query->published()->where('title', 'LIKE', "%{$search}%");
+        return $query->published()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%");
     }
 
 

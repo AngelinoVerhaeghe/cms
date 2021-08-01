@@ -57,76 +57,82 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach ($posts as $post)
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <img src="{{ asset('/storage/' . $post->image) }}"
-                                                    alt="{{ $post->title }}" class="h-32 w-full">
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm font-bold text-gray-900">
-                                                    {{ $post->title }}
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm font-bold text-gray-900">
-                                                    {{ $post->category->name }}
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm font-bold text-gray-900">
-                                                    {{ $post->published_at }}
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <!-- If post is softdeleted show Not Active -->
-                                                @if ($post->deleted_at != null)
-                                                    <span
-                                                        class="text-xs inline-flex leading-5 font-bold bg-red-100 text-red-800 text-center rounded-full shadow px-2">
-                                                        Not Active
-                                                    </span>
-                                                @else
-                                                    <span
-                                                        class="text-xs inline-flex leading-5 font-bold bg-green-100 text-green-500 text-center rounded-full shadow px-2">
-                                                        Active
-                                                    </span>
-                                                @endif
-                                            </td>
-                                            @if (auth()->user()->id == $post->user->id)
-                                                <td class="text-left text-sm px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex space-x-4">
-                                                        <!-- If post has been trashed hide the edit button -->
-                                                        @if ($post->trashed())
-                                                            <form action="{{ route('restore-post', $post->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <button type="submit"
-                                                                    href="{{ route('posts.edit', $post->id) }}"
-                                                                    class="text-yellow-500 hover:text-yellow-900">
-                                                                    Restore
-                                                                </button>
-                                                            </form>
+                                        <a href="{{ route('blog.show', $post->slug) }}" target="_blank">
+                                            <tr class="hover:bg-gray-100 cursor-pointer">
 
-                                                        @else
-                                                            <a href="{{ route('posts.edit', $post->id) }}"
-                                                                class="text-indigo-500 hover:text-indigo-900">Edit</a>
-                                                        @endif
-                                                        <form action="{{ route('posts.destroy', $post->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <!-- Swith button text to delete or trash -->
-                                                            <button type="submit"
-                                                                class="text-sm text-red-500 hover:text-red-900">
-                                                                {{ $post->trashed() ? 'Delete' : 'Trash' }}
-                                                            </button>
-                                                        </form>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <img src="{{ asset('/storage/' . $post->image) }}"
+                                                        alt="{{ $post->title }}" class="h-32 w-full">
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <a href="{{ route('blog.show', $post->slug) }}" target="_blank">
+                                                        <div class="text-sm font-bold text-blue-700">
+                                                            {{ $post->title }}
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm font-bold text-gray-900">
+                                                        {{ $post->category->name }}
                                                     </div>
                                                 </td>
-                                            @else
-                                                <td class="px-6 py-4 whitespace-nowrap"></td>
-                                            @endif
-                                        </tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm font-bold text-gray-900">
+                                                        {{ $post->published_at }}
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <!-- If post is softdeleted show Not Active -->
+                                                    @if ($post->deleted_at != null)
+                                                        <span
+                                                            class="text-xs inline-flex leading-5 font-bold bg-red-100 text-red-800 text-center rounded-full shadow px-2">
+                                                            Not Active
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="text-xs inline-flex leading-5 font-bold bg-green-100 text-green-500 text-center rounded-full shadow px-2">
+                                                            Active
+                                                        </span>
+                                                    @endif
+                                                </td>
+                                                @if (auth()->user()->id == $post->user->id)
+                                                    <td class="text-left text-sm px-6 py-4 whitespace-nowrap">
+                                                        <div class="flex space-x-4">
+                                                            <!-- If post has been trashed hide the edit button -->
+                                                            @if ($post->trashed())
+                                                                <form action="{{ route('restore-post', $post->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <button type="submit"
+                                                                        href="{{ route('posts.edit', $post->id) }}"
+                                                                        class="text-yellow-500 hover:text-yellow-900">
+                                                                        Restore
+                                                                    </button>
+                                                                </form>
+
+                                                            @else
+                                                                <a href="{{ route('posts.edit', $post->id) }}"
+                                                                    class="text-indigo-500 hover:text-indigo-900">Edit</a>
+                                                            @endif
+                                                            <form action="{{ route('posts.destroy', $post->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <!-- Swith button text to delete or trash -->
+                                                                <button type="submit"
+                                                                    class="text-sm text-red-500 hover:text-red-900">
+                                                                    {{ $post->trashed() ? 'Delete' : 'Trash' }}
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                @else
+                                                    <td class="px-6 py-4 whitespace-nowrap"></td>
+                                                @endif
+
+                                            </tr>
+
                                     @endforeach
                                 </tbody>
                             </table>
@@ -141,6 +147,7 @@
         </div>
 
     </section>
+
 
     <section class="container mx-auto px-2 lg:px-0 my-5">
 

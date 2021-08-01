@@ -12,7 +12,7 @@ class PostsController extends Controller
 {
     public function show($slug)
     {
-        $post = Post::with(['category', 'tags'])->where('slug', $slug)->first();
+        $post = Post::with(['category', 'tags', 'user'])->where('slug', $slug)->first();
         $relatedPosts = Post::where('category_id', $post->category->id)->where('slug', '!=', $slug)->take(4)->get();
         return view('blog.show', compact('post', 'relatedPosts'));
     }

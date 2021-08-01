@@ -57,9 +57,11 @@
                                                 class="px-6 py-4 whitespace-nowrap text-left text-sm font-bold space-x-3">
                                                 <a href="{{ route('categories.edit', $category->id) }}"
                                                     class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                <button type="button" x-on:click="open = !open"
-                                                    class="text-red-600 hover:text-red-900" aria-controls="modal"
-                                                    aria-expanded="false">Delete</button>
+                                                @if (auth()->user()->role == 'Administrator')
+                                                    <button type="button" x-on:click="open = !open"
+                                                        class="text-red-600 hover:text-red-900" aria-controls="modal"
+                                                        aria-expanded="false">Delete</button>
+                                                @endif
                                                 <form action="{{ route('categories.destroy', $category->id) }}"
                                                     method="POST">
                                                     @csrf

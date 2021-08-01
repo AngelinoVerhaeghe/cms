@@ -6,7 +6,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Lato", "sans-serif"],
+                sans: ["Open Sans", "sans-serif"],
             },
             colors: {
                 fuchsia: colors.fuchsia,

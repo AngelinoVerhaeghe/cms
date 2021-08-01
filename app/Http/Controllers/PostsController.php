@@ -30,7 +30,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(3);
+        /* $posts = Post::latest()->paginate(3); */
+        $posts = Post::with(['category', 'tags', 'user'])->where('user_id', auth()->user()->id)->latest()->paginate(3);
         return view('admin.posts.index', compact('posts'));
     }
 

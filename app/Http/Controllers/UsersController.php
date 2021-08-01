@@ -50,7 +50,7 @@ class UsersController extends Controller
 
         session()->flash('success', 'Your profile updated successfully.');
 
-        return redirect(route('admin.users.index'));
+        return redirect(route('users.index'));
     }
 
 
@@ -62,6 +62,6 @@ class UsersController extends Controller
 
         session()->flash('success', 'User made Administrator successfully.');
 
-        return redirect(route('admin.users.index'));
+        return redirect(route('users.index'));
     }
 }

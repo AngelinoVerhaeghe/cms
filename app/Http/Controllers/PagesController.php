@@ -12,14 +12,14 @@ class PagesController extends Controller
     public function index()
     {
         //? Take 4 from the latest created blog post and show them on homepage
-        $recentPosts = Post::with(['category'])->latest('created_at', 'DESC')->take(4)->get();
+        $recentPosts = Post::with(['user', 'category', 'tags'])->latest('created_at', 'DESC')->take(4)->get();
         return view('index', compact('recentPosts'));
     }
 
     public function blogs()
     {
 
-        $posts = Post::searched()->latest()->paginate(8);
+        $posts = Post::with(['user', 'category', 'tags'])->searched()->latest()->paginate(8);
         $categories = Category::all();
         $tags = Tag::all();
 
