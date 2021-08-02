@@ -1,5 +1,5 @@
 @if (session()->has('success'))
-    <div x-data="{ open: true }" class="px-6 lg:px-8 mt-5">
+    <div x-data="{ open: true }" class="px-6 lg:px-8 my-5">
         <div x-show="open" x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="transform opacity-100" x-transition:leave-end="transform opacity-0"
             x-init="() => { setTimeout( () => { open = false }, 5000); }"

@@ -14,7 +14,7 @@
                 <div>
                     <a href="{{ route('users.index') }}">
                         <span
-                            class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-teal-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
+                            class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-gray-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -28,7 +28,7 @@
             <div>
                 <a href="{{ route('posts.index') }}">
                     <span
-                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-teal-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
+                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-gray-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,9 +39,22 @@
                 </a>
             </div>
             <div>
+                <a href="{{ route('comments.index') }}">
+                    <span
+                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-gray-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                        </svg>
+                        Comments
+                    </span>
+                </a>
+            </div>
+            <div>
                 <a href="{{ route('categories.index') }}">
                     <span
-                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-teal-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
+                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-gray-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -54,7 +67,7 @@
             <div>
                 <a href="{{ route('tags.index') }}">
                     <span
-                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-teal-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
+                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-gray-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
                         <i class="ri-bookmark-3-line text-xl mr-3"></i>
                         Tags
                     </span>
@@ -66,7 +79,7 @@
             <div>
                 <a href="{{ route('trashed-posts.index') }}">
                     <span
-                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-teal-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
+                        class="flex items-center text-gray-700 space-x-2 font-medium px-2 py-2 hover:bg-gray-400 rounded-xl transition duration-300 ease-in-out hover:shadow-md">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -81,7 +94,7 @@
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                 <span
-                    class="flex items-center text-red-900 space-x-2 font-bold px-2 py-2 bg-red-300 rounded-xl transition duration-300 ease-in-out">
+                    class="flex items-center text-red-900 space-x-2 font-bold px-2 py-2 hover:bg-red-400 rounded-xl transition duration-300 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

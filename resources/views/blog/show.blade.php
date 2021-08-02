@@ -23,7 +23,15 @@
     </section>
 
 
+    <section>
+        <div class="flex justify-center w-8/12 mx-auto">
+            @include('partials.success')
+        </div>
+    </section>
+
+
     <section class="container mx-auto px-2 lg:px-0 my-15">
+
         <div class="bg-gray-400 text-gray-700 rounded-lg shadow-lg">
             <div class="p-6">
                 <span
@@ -59,6 +67,153 @@
             <a href="{{ route('blogs-overview') }}"
                 class="bg-gray-900 text-white font-bold rounded-full shadow-md py-2 px-5 lg:px-7 hover:bg-gray-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">Back</a>
         </div>
+    </section>
+
+    @if (auth()->check())
+        <section class="container mx-auto px-2 lg:px-0 my-15">
+            <div class="flex items-center justifiy-start md:justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3 text-teal-700" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+                <h2
+                    class="text-2xl text-gray-700 md:text
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                 -center font-bold uppercase">
+                    Leave
+                    a
+                    comment...
+                </h2>
+            </div>
+            <div class="bg-white/50 text-gray-700 md:w-8/12 rounded-lg shadow-lg mt-10 mx-auto">
+                <div class="p-6">
+                    {{-- User must be registrated to add a comment --}}
+
+                    <form action="{{ route('comments.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <div>
+                            <label for="comment" class="block text-sm font-medium text-gray-700"></label>
+                            <textarea name="comment" id="comment" rows="3"
+                                class="shadow-sm focus:ring-gray-500 focus:border-gray-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md @error('comment') is-invalid @enderror"
+                                placeholder="Comment..." value="{{ old('comment') }}"></textarea>
+                            @error('comment')
+                                <span class="text-red-500 text-sm italic mt-4">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mt-5">
+                            <button type="submit"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-bold rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300 ease-in-out">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    @else
+        <section class="container mx-auto px-2 lg:px-0 my-15">
+            <div class="flex items-center justifiy-start md:justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3 text-teal-700" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+                <h2 class="text-2xl text-gray-700 md:text-center font-bold">
+                    Want to leave
+                    a
+                    comment...
+                </h2>
+            </div>
+            <div class="space-y-4">
+                <p class="text-xl text-gray-700 md:text-center font-bold">Please login or register, today.</p>
+                <div class="flex justify-center space-x-3 pb-10">
+                    <a class="bg-rose-500 text-white rounded-full shadow-md py-2 px-8 hover:bg-rose-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
+                        href="{{ route('login') }}">{{ __('Login') }}</a>
+                    @if (Route::has('register'))
+                        <a class="border-2 border-rose-500 shadow-mdtext-base rounded-full shadow-md py-2 px-5 hover:bg-white hover:text-rose-500 hover:border-white transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400"
+                            href="{{ route('register') }}">{{ __('Register') }}</a>
+                    @endif
+                </div>
+
+            </div>
+        </section>
+    @endif
+
+    <section class="container mx-auto px-2 lg:px-0 my-15">
+        @if (count($comments) > 0)
+
+            <div class="flex items-center justifiy-start md:justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3 text-orange-700" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                </svg>
+                <h2
+                    class="text-2xl text-gray-700 md:text
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                 -center font-bold uppercase">
+                    Comments
+                </h2>
+            </div>
+
+            @forelse ($comments as $comment)
+                <div class="bg-white/50 text-gray-700 md:w-8/12 rounded-lg shadow-lg mt-10 mx-auto">
+                    <div class="p-6">
+                        <p class="mb-5 font-light text-gray-600">{{ $comment->comment }}</p>
+                        <div class="flex justify-between border-t border-gray-400">
+                            <p class="text-xs font-bold italic text-gray-500 mt-5">by
+                                {{ $comment->user->name }}
+                            </p>
+                            <p class="text-xs font-bold text-gray-400 mt-5">
+                                {{ $comment->created_at->diffForHumans() }}
+                            </p>
+                        </div>
+                        <div x-data="{ open: false }" class="mt-5">
+                            <button x-on:click="open = ! open"
+                                class="bg-gray-500 text-gray-100 text-sm font-bold rounded-lg shadow-md py-1 px-3 hover:bg-gray-900 transition duration-300 ease-in-out">Reply</button>
+
+                            <div x-show="open" class="bg-white shadow-md rounded-lg my-5 p-6">
+                                <form action="{{ route('commentreplies.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                    <div>
+                                        <label for="reply" class="block text-sm font-medium text-gray-700"></label>
+                                        <textarea name="reply" id="reply" rows="3"
+                                            class="shadow-sm focus:ring-gray-500 focus:border-gray-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md @error('comment') is-invalid @enderror"
+                                            placeholder="Reply..." value="{{ old('reply') }}"></textarea>
+                                        @error('reply')
+                                            <span class="text-red-500 text-sm italic mt-4">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-5">
+                                        <button type="submit"
+                                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-bold rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300 ease-in-out">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        {{-- @foreach ($commentReplies as $reply)
+                            <div class="p-6">
+                                <p class="mb-5 font-light text-gray-600">{{ $reply->reply }}</p>
+                                <div class="flex justify-between border-t border-gray-400">
+                                    <p class="text-xs font-bold italic text-gray-500 mt-5">by
+                                        {{ $reply->user->name }}
+                                    </p>
+                                    <p class="text-xs font-bold text-gray-400 mt-5">
+                                        {{ $reply->created_at->diffForHumans() }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endforeach --}}
+
+                    </div>
+                </div>
+            @empty
+                <div>
+                    <p>There are no comments at this moment...</p>
+                </div>
+            @endforelse
+
+        @endif
     </section>
 
     <section class="container mx-auto px-2 lg:px-0">

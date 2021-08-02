@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\PostComment;
+use App\Models\CommentReply;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,6 +30,17 @@ class Post extends Model
     public function deleteImage()
     {
         Storage::delete($this->image);
+    }
+
+    //? Relations
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(CommentReply::class);
     }
 
     public function category()

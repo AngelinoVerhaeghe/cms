@@ -28,12 +28,14 @@ Route::get('blogs/tags/{tag:slug}', [\App\Http\Controllers\Blog\PostsController:
 
 Auth::routes();
 
-Route::middleware(['auth'])->group( function () {
+Route::middleware(['auth'])->prefix('admin')->group( function () {
     Route::get('/admin', [\App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
 
-    Route::resource('admin/categories', '\App\Http\Controllers\CategoriesController');
-    Route::resource('admin/tags', '\App\Http\Controllers\TagsController');
-    Route::resource('admin/posts', '\App\Http\Controllers\PostsController');
+    Route::resource('categories', '\App\Http\Controllers\CategoriesController');
+    Route::resource('tags', '\App\Http\Controllers\TagsController');
+    Route::resource('posts', '\App\Http\Controllers\PostsController');
+    Route::resource('comments', '\App\Http\Controllers\PostCommentController');
+    Route::resource('commentreplies', '\App\Http\Controllers\CommentRepliesController');
 
     //? Routes with softDeletes
     Route::get('trashed-posts', [\App\Http\Controllers\PostsController::class, 'trashed'])->name('trashed-posts.index');

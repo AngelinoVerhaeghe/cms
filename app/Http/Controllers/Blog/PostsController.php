@@ -7,6 +7,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\CommentReply;
+use App\Models\PostComment;
 
 class PostsController extends Controller
 {
@@ -14,7 +16,9 @@ class PostsController extends Controller
     {
         $post = Post::with(['category', 'tags', 'user'])->where('slug', $slug)->first();
         $relatedPosts = Post::where('category_id', $post->category->id)->where('slug', '!=', $slug)->take(4)->get();
-        return view('blog.show', compact('post', 'relatedPosts'));
+        $comments = $post->comments;
+
+        return view('blog.show', compact('post', 'relatedPosts', 'comments' ));
     }
 
     public function showBlogsOnCategory(Category $category)
