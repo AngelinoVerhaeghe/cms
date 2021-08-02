@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Models\Post;
-use App\Models\PostComment;
+use App\Models\Reply;
+use App\Models\Comment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,6 +62,11 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->hasMany(PostComment::class);
+        return $this->hasMany(Comment::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 }

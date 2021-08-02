@@ -79,7 +79,7 @@
                 </svg>
                 <h2
                     class="text-2xl text-gray-700 md:text
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                 -center font-bold uppercase">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -center font-bold uppercase">
                     Leave
                     a
                     comment...
@@ -120,7 +120,7 @@
                 <h2 class="text-2xl text-gray-700 md:text-center font-bold">
                     Want to leave
                     a
-                    comment...
+                    comment or reply...
                 </h2>
             </div>
             <div class="space-y-4">
@@ -139,7 +139,7 @@
     @endif
 
     <section class="container mx-auto px-2 lg:px-0 my-15">
-        @if (count($comments) > 0)
+        @if (count($post->comments) > 0)
 
             <div class="flex items-center justifiy-start md:justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3 text-orange-700" fill="none" viewBox="0 0 24 24"
@@ -149,62 +149,82 @@
                 </svg>
                 <h2
                     class="text-2xl text-gray-700 md:text
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                 -center font-bold uppercase">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -center font-bold uppercase">
                     Comments
                 </h2>
             </div>
 
-            @forelse ($comments as $comment)
+            @forelse ($post->comments as $comment)
                 <div class="bg-white/50 text-gray-700 md:w-8/12 rounded-lg shadow-lg mt-10 mx-auto">
                     <div class="p-6">
                         <p class="mb-5 font-light text-gray-600">{{ $comment->comment }}</p>
                         <div class="flex justify-between border-t border-gray-400">
                             <p class="text-xs font-bold italic text-gray-500 mt-5">by
-                                {{ $comment->user->name }}
+                                {{ $comment->author }}
                             </p>
                             <p class="text-xs font-bold text-gray-400 mt-5">
                                 {{ $comment->created_at->diffForHumans() }}
                             </p>
                         </div>
-                        <div x-data="{ open: false }" class="mt-5">
-                            <button x-on:click="open = ! open"
-                                class="bg-gray-500 text-gray-100 text-sm font-bold rounded-lg shadow-md py-1 px-3 hover:bg-gray-900 transition duration-300 ease-in-out">Reply</button>
+                        @if (auth()->check())
+                            <div x-data="{ open: false }" class="mt-5">
+                                <button x-on:click="open = ! open"
+                                    class="bg-gray-500 text-gray-100 text-sm font-bold rounded-lg shadow-md py-1 px-3 hover:bg-gray-900 transition duration-300 ease-in-out">Reply</button>
 
-                            <div x-show="open" class="bg-white shadow-md rounded-lg my-5 p-6">
-                                <form action="{{ route('commentreplies.store') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-                                    <div>
-                                        <label for="reply" class="block text-sm font-medium text-gray-700"></label>
-                                        <textarea name="reply" id="reply" rows="3"
-                                            class="shadow-sm focus:ring-gray-500 focus:border-gray-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md @error('comment') is-invalid @enderror"
-                                            placeholder="Reply..." value="{{ old('reply') }}"></textarea>
-                                        @error('reply')
-                                            <span class="text-red-500 text-sm italic mt-4">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="mt-5">
-                                        <button type="submit"
-                                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-bold rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300 ease-in-out">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        {{-- @foreach ($commentReplies as $reply)
-                            <div class="p-6">
-                                <p class="mb-5 font-light text-gray-600">{{ $reply->reply }}</p>
-                                <div class="flex justify-between border-t border-gray-400">
-                                    <p class="text-xs font-bold italic text-gray-500 mt-5">by
-                                        {{ $reply->user->name }}
-                                    </p>
-                                    <p class="text-xs font-bold text-gray-400 mt-5">
-                                        {{ $reply->created_at->diffForHumans() }}
-                                    </p>
+                                <div x-show="open" class="bg-white shadow-md rounded-lg my-5 p-6">
+                                    <form action="{{ route('commentreplies.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="comment_id" value="{{ $post->id }}">
+                                        <div>
+                                            <label for="reply" class="block text-sm font-medium text-gray-700"></label>
+                                            <textarea name="reply" id="reply" rows="3"
+                                                class="shadow-sm focus:ring-gray-500 focus:border-gray-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md @error('comment') is-invalid @enderror"
+                                                placeholder="Reply..." value="{{ old('reply') }}"></textarea>
+                                            @error('reply')
+                                                <span class="text-red-500 text-sm italic mt-4">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mt-5">
+                                            <button type="submit"
+                                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-bold rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300 ease-in-out">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        @endforeach --}}
+                        @endif
 
+                        @if (count($replies) > 0)
+                            <div x-data="{ open: false }" class="my-5">
+                                <button x-on:click="open = ! open"
+                                    class="bg-orange-600 text-orange-100 text-sm font-bold rounded-lg shadow-md py-2 px-4 hover:bg-orange-800 transition duration-300 ease-in-out">({{ count($replies) }})
+                                    {{ count($replies) == 1 ? 'Reply' : 'Replies' }}</button>
+
+                                <div x-show="open">
+                                    @foreach ($replies as $reply)
+                                        <div class="p-6">
+                                            <div class="bg-white/50 rounded-lg shadow-md p-4">
+                                                <p class="mb-5 font-light text-gray-600">{{ $reply->reply }}</p>
+                                                <div class="flex justify-between border-t border-gray-400">
+                                                    <p class="text-xs font-bold italic text-gray-500 mt-5">by
+                                                        {{ $reply->author }}
+                                                    </p>
+                                                    <p class="text-xs font-bold text-gray-400 mt-5">
+                                                        {{ $reply->created_at->diffForHumans() }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+
+                        @else
+                            <div>
+                                <p>There are no replies at this moment...</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @empty

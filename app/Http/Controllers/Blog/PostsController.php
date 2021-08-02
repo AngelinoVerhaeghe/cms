@@ -4,21 +4,22 @@ namespace App\Http\Controllers\Blog;
 
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Reply;
+use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\CommentReply;
-use App\Models\PostComment;
+
 
 class PostsController extends Controller
 {
     public function show($slug)
     {
-        $post = Post::with(['category', 'tags', 'user'])->where('slug', $slug)->first();
+        $post = Post::with(['category', 'tags', 'user', 'comments'])->where('slug', $slug)->first();
         $relatedPosts = Post::where('category_id', $post->category->id)->where('slug', '!=', $slug)->take(4)->get();
-        $comments = $post->comments;
-
-        return view('blog.show', compact('post', 'relatedPosts', 'comments' ));
+        $comments = Comment::all();
+        $replies = Reply::where('comment_id', $post->id)->get();
+        return view('blog.show', compact('post', 'relatedPosts', 'replies'));
     }
 
     public function showBlogsOnCategory(Category $category)

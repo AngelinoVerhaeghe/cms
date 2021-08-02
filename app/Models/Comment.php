@@ -4,15 +4,15 @@ namespace App\Models;
 
 use App\Models\Post;
 use App\Models\User;
-use App\Models\CommentReply;
+use App\Models\Reply;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PostComment extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['post_id', 'user_id', 'comment', 'is_active'];
+    protected $fillable = ['post_id', 'author', 'comment', 'is_active', 'email'];
 
     public function post()
     {
@@ -21,7 +21,7 @@ class PostComment extends Model
 
     public function replies()
     {
-        return $this->hasMany(CommentReply::class);
+        return $this->hasMany(Reply::class);
     }
 
     public function user()

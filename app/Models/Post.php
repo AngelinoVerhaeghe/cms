@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Category;
-use App\Models\PostComment;
-use App\Models\CommentReply;
+use App\Models\Comment;
+use App\Models\Reply;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,12 +35,12 @@ class Post extends Model
     //? Relations
     public function comments()
     {
-        return $this->hasMany(PostComment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function replies()
     {
-        return $this->hasMany(CommentReply::class);
+        return $this->hasMany(Reply::class);
     }
 
     public function category()

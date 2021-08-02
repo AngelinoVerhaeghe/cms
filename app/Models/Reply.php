@@ -3,19 +3,19 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\PostComment;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CommentReply extends Model
+class Reply extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['comment_id', 'user_id', 'reply', 'is_active'];
+    protected $fillable = ['comment_id', 'author', 'reply', 'is_active', 'email'];
 
     public function comment()
     {
-        return $this->belongsTo(PostComment::class);
+        return $this->belongsTo(Comment::class);
     }
 
     public function user()

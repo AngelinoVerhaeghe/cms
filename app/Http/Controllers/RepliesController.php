@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PostComment;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 
-class PostCommentController extends Controller
+class RepliesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PostCommentController extends Controller
      */
     public function index()
     {
-        return view('admin.comments.index');
+        //
     }
 
     /**
@@ -36,28 +36,28 @@ class PostCommentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'comment' => 'required'
+            'reply' => 'required|min:5|max:2000'
         ]);
 
-        PostComment::create([
-            'post_id' => $request->post_id,
-            'user_id' => auth()->user()->id,
-            'comment' => $request->comment
+        Reply::create([
+            'comment_id' => $request->comment_id,
+            'author' => auth()->user()->name,
+            'email' => auth()->user()->email,
+            'reply' => $request->reply
         ]);
 
-        session()->flash('success', 'Your comment has been added successfully.');
+        session()->flash('success', 'Your reply has been added to the comment successfully.');
 
         return redirect()->back();
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PostComment  $postComment
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function show(PostComment $postComment)
+    public function show(Reply $reply)
     {
         //
     }
@@ -65,10 +65,10 @@ class PostCommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PostComment  $postComment
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostComment $postComment)
+    public function edit(Reply $reply)
     {
         //
     }
@@ -77,10 +77,10 @@ class PostCommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PostComment  $postComment
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PostComment $postComment)
+    public function update(Request $request, Reply $reply)
     {
         //
     }
@@ -88,10 +88,10 @@ class PostCommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PostComment  $postComment
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostComment $postComment)
+    public function destroy(Reply $reply)
     {
         //
     }

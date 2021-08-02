@@ -34,8 +34,8 @@ Route::middleware(['auth'])->prefix('admin')->group( function () {
     Route::resource('categories', '\App\Http\Controllers\CategoriesController');
     Route::resource('tags', '\App\Http\Controllers\TagsController');
     Route::resource('posts', '\App\Http\Controllers\PostsController');
-    Route::resource('comments', '\App\Http\Controllers\PostCommentController');
-    Route::resource('commentreplies', '\App\Http\Controllers\CommentRepliesController');
+    Route::resource('comments', '\App\Http\Controllers\CommentController');
+    Route::resource('commentreplies', '\App\Http\Controllers\RepliesController');
 
     //? Routes with softDeletes
     Route::get('trashed-posts', [\App\Http\Controllers\PostsController::class, 'trashed'])->name('trashed-posts.index');
