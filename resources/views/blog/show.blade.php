@@ -79,7 +79,7 @@
                 </svg>
                 <h2
                     class="text-2xl text-gray-700 md:text
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -center font-bold uppercase">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             -center font-bold uppercase">
                     Leave
                     a
                     comment...
@@ -149,7 +149,7 @@
                 </svg>
                 <h2
                     class="text-2xl text-gray-700 md:text
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -center font-bold uppercase">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             -center font-bold uppercase">
                     Comments
                 </h2>
             </div>
