@@ -36,5 +36,15 @@ Styled with Tailwindcss, Gravatar, Alpine JS, Heroicons, Remixicons
 Project Images
 
 <div>
-    <img src="blogpage.png" width="500px" height="500px">
+    <img src="./blogpage.png" width="500px" height="500px">
 </div>
+<div>
+    <img src="./dashboard.png" width="500px" height="500px">
+</div>
+<div>
+    <img src="./frontpage.png" width="500px" height="500px">
+</div>
+<div>
+    <img src="./Singleblogpage.png" width="500px" height="500px">
+</div>
+
