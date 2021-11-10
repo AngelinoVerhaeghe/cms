@@ -33,6 +33,8 @@ Styled with Tailwindcss, Gravatar, Alpine JS, Heroicons, Remixicons
 
 ## Images
 
-In the root folder, frontpage.png, blogpage.png and Singleblogpage.
+Project Images
 
-CMS image, dashboard.png
+<div>
+    <img src="blogpage.png" width="500px" height="500px">
+</div>
