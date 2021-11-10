@@ -169,12 +169,12 @@
                         @if (auth()->check())
                             <div x-data="{ open: false }" class="mt-5">
                                 <button x-on:click="open = ! open"
-                                    class="bg-gray-500 text-gray-100 text-sm font-bold rounded-lg shadow-md py-1 px-3 hover:bg-gray-900 transition duration-300 ease-in-out">Reply</button>
+                                    class="bg-gray-500 text-gray-100 text-sm font-bold rounded-lg shadow-md py-2 px-4 hover:bg-gray-900 transition duration-300 ease-in-out">Reply</button>
 
                                 <div x-show="open" class="bg-white shadow-md rounded-lg my-5 p-6">
                                     <form action="{{ route('commentreplies.store') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="comment_id" value="{{ $post->id }}">
+                                        <input type="hidden" name="comment_id" value="{{ $comment->id }}">
                                         <div>
                                             <label for="reply" class="block text-sm font-medium text-gray-700"></label>
                                             <textarea name="reply" id="reply" rows="3"
@@ -193,15 +193,15 @@
                             </div>
                         @endif
 
-                        @if (count($replies) > 0)
+                        @if (count($comment->replies) > 0)
                             <div x-data="{ open: false }" class="my-5">
                                 <button x-on:click="open = ! open"
-                                    class="bg-orange-600 text-orange-100 text-sm font-bold rounded-lg shadow-md py-2 px-4 hover:bg-orange-800 transition duration-300 ease-in-out">({{ count($replies) }})
-                                    {{ count($replies) == 1 ? 'Reply' : 'Replies' }}</button>
+                                    class="bg-teal-500 text-white text-sm font-bold rounded-lg shadow-md py-2 px-4 hover:bg-teal-600 transition duration-300 ease-in-out">({{ count($comment->replies) }})
+                                    {{ count($comment->replies) == 1 ? 'Reply' : 'Replies' }}</button>
 
-                                <div x-show="open">
-                                    @foreach ($replies as $reply)
-                                        <div class="p-6">
+                                <div>
+                                    @foreach ($comment->replies as $reply)
+                                        <div x-show="open" class="p-6">
                                             <div class="bg-white/50 rounded-lg shadow-md p-4">
                                                 <p class="mb-5 font-light text-gray-600">{{ $reply->reply }}</p>
                                                 <div class="flex justify-between border-t border-gray-400">
@@ -222,7 +222,7 @@
 
                         @else
                             <div>
-                                <p>There are no replies at this moment...</p>
+                                <p class="mt-3">There are no replies at this moment...</p>
                             </div>
                         @endif
                     </div>

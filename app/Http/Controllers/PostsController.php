@@ -114,7 +114,7 @@ class PostsController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $data = $request->only(['title', 'description', 'content', 'published_at']);
+        $data = $request->only(['title', 'description', 'content', 'category_id', 'published_at']);
 
         // Check if new image
         if ($request->hasFile('image')) {
@@ -126,6 +126,10 @@ class PostsController extends Controller
 ;
             $data['image'] = $image;
 
+        }
+
+        if ($request->has('category_id')) {
+            $post->category_id = $request->category_id;
         }
 
         if ($request->tags) {

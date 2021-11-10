@@ -18,8 +18,9 @@ class PostsController extends Controller
         $post = Post::with(['category', 'tags', 'user', 'comments'])->where('slug', $slug)->first();
         $relatedPosts = Post::where('category_id', $post->category->id)->where('slug', '!=', $slug)->take(4)->get();
         $comments = Comment::all();
-        $replies = Reply::where('comment_id', $post->id)->get();
-        return view('blog.show', compact('post', 'relatedPosts', 'replies'));
+        /* $replies = Reply::all();
+        dd($replies); */
+        return view('blog.show', compact('post', 'relatedPosts'));
     }
 
     public function showBlogsOnCategory(Category $category)

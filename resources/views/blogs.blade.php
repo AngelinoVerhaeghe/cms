@@ -84,7 +84,6 @@
 
         @if (isset($posts))
             <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-10 my-15">
-
                 @foreach ($posts as $post)
                     <div class="relative bg-orange-300 rounded-lg shadow-md overflow-hidden">
                         <img src="{{ asset('/storage/' . $post->image) }}" alt="{{ $post->title }}"
